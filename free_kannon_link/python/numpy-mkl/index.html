@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<head>
+<meta charset="utf-8">
+<title>Building NumPy with MKL on Windows</title>
+</head>
+<style type="text/css">
+img.middle { vertical-align: middle; }
+</style>
+<body>
+<pre>
+<center><h1>Building NumPy with MKL on Windows</h1></center>
+
+■ Christoph Gohlke's Windows Wheels site
+    ・ <a href="https://stackoverflow.com/questions/72581592/what-to-do-when-gohlkes-python-wheel-service-shuts-down">What to do when Gohlke's python wheel service shuts down? [closed] - Stack Overflow</a>
+        ・ <a href="https://www.reddit.com/r/Python/comments/vcaibq/christoph_gohlkes_windows_wheels_site_is_shutting/">Christoph Gohlke's Windows Wheels site is shutting down by the end of the month - Reddit</a>
+
+
+■ Build Policy
+    ・ Tools
+        ・ python packages
+            cython      (specified version in the )
+            pytest
+            
+            wheel
+        ・ 
+        ・ 
+
+■ Build Steps
+    1. install (or update) the above tools
+    2. download source code zip: e.g., numpy-1.24.1.zip from GitHub realease tags
+    3. copy site.cfg.example to site.cfg
+    4. edit site.cfg
+
+        [mkl]
+        include_dirs = C:\Program Files (x86)\Intel\oneAPI\mkl\2021.1.1\include
+        library_dirs = C:\Program Files (x86)\Intel\oneAPI\mkl\2021.1.1\lib\intel64
+        libraries = mkl_rt
+
+        libraries = mkl_core
+
+        libraries = mkl_intel_ilp64.lib mkl_intel_thread.lib mkl_core.lib libiomp5md.lib
+
+    5. invoke command prompt ()
+    6. python setup.py bdist_wheel
+            "C:\Program Files\Python310\python.exe" setup.py bdist_wheel
+            dist/numpy-1.24.1-cp39-cp39-win_amd64.whl
+
+■ Current References
+    ・ <a href="https://numpy.org/devdocs/user/building.html#building-from-source">Building from source</a>
+    ・ <a href="https://www.intel.com/content/www/us/en/developer/articles/technical/numpyscipy-with-intel-mkl.html">Numpy/Scipy with Intel® MKL and Intel® Compilers</a>
+        ・ <a href="https://www.intel.com/content/www/us/en/developer/tools/oneapi/distribution-for-python.html#gs.nhwlkk">Intel® Distribution for Python</a>
+            ・ <a href="https://www.intel.com/content/www/us/en/developer/tools/oneapi/onemkl-link-line-advisor.html#gs.nhuwc7">Intel® oneAPI Math Kernel Library Link Line Advisor</a>
+
+                oneMKL 2022
+                Windows*
+                C/C++
+                intel(R) 54
+                Static
+                OpenMP threading
+                intel(R) (libiomp5)
+
+                Use this link line:
+                    mkl_intel_ilp64.lib mkl_intel_thread.lib mkl_core.lib libiomp5md.lib
+
+                Compiler options:
+                    /DMKL_ILP64  -I"%MKLROOT%\include"
+
+        ・ <a href="https://community.intel.com/t5/Intel-Distribution-for-Python/Compiling-numpy-amp-scipy-with-Intel-MKL-in-windows-10/td-p/1318469">Compiling numpy & scipy with Intel MKL in windows 10</a>
+
+
+■ Static Linking
+        ・ <a href="https://community.intel.com/t5/Intel-oneAPI-Math-Kernel-Library/static-linking-with-MKL/td-p/811130">static linking with MKL</a>
+
+
+■ Rather Old References
+    ・ <a href="https://gehrcke.de/2014/02/building-numpy-and-scipy-with-intel-compilers-and-intel-mkl-on-a-64-bit-machine/">Building numpy and scipy with Intel compilers and Intel MKL on a 64 bit machine - Jan-Philip Gehrcke</a>
+    ・ <a href="http://nipy.org/nipy/devel/install/windows_scipy_build.html">Building Scipy/Numpy on Windows with Optimized Numerical Librarie</a>
+
+
+■ Other References
+    ・ <a href="https://stackoverflow.com/questions/64261546/how-to-solve-error-microsoft-visual-c-14-0-or-greater-is-required-when-inst">How to solve "error: Microsoft Visual C++ 14.0 or greater is required" when installing Python packages? - Stack Overflow</a>
+    ・ <a href="https://stackoverflow.com/questions/46665571/how-to-get-egg-or-wheel-file-of-pip-installed-python-package">How to get egg or wheel file of pip-installed python package? - Stack Overflow</a>
+    ・ <a href="https://qiita.com/iisaka51/items/00085f24ac7a99c1a7ad">MKL版NumPy, SciPy をビルドする方法(お手軽バージョン)</a>
+</pre>
+</body>
+</html>
