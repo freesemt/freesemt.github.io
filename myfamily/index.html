@@ -19,9 +19,10 @@ img.middle { vertical-align: middle; }
 
     function checkPassword() {
         var password = prompt("Please enter the password:");
-        if (hashCode(password) !== -1372627185) {
+        alert("hashCode(password)=" + password + hashCode(password));
+        if (hashCode(password) !== 942422394) {
             alert("Incorrect password!");
-            window.location.href = "index.html"; // Redirect to another page or show an error message
+            window.location.href = "../index.html"; // Redirect to another page or show an error message
         }
     }
 </script>
