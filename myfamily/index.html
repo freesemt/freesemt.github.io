@@ -2,9 +2,11 @@
 <head>
 <meta charset="utf-8">
 <title>Freesemt's Personal Pages on Github</title>
-</head>
 <style type="text/css">
 img.middle { vertical-align: middle; }
+#protected-content {
+    display: none;
+}
 </style>
 <script type="text/javascript">
     function hashCode(str) {
@@ -25,10 +27,14 @@ img.middle { vertical-align: middle; }
         } else if (hashCode(password) !== 942422394) {
             alert("Incorrect password!");
             window.location.href = "../index.html"; // Redirect to the main page
+        } else {
+            document.getElementById('protected-content').style.display = 'block';
         }
     }
 </script>
+</head>
 <body onload="checkPassword()">
+<div id="protected-content">
 <pre>
 <center><h1>Freesemt's Personal Pages on Github</h1></center>
 ・ 池之端
@@ -41,5 +47,6 @@ img.middle { vertical-align: middle; }
     ・ <a href="koto/index.html">琴のページ</a>
 
 </pre>
+</div>
 </body>
 </html>
