@@ -6,7 +6,26 @@
 <style type="text/css">
 img.middle { vertical-align: middle; }
 </style>
-<body>
+<script type="text/javascript">
+    function hashCode(str) {
+        var hash = 0;
+        for (var i = 0; i < str.length; i++) {
+            var char = str.charCodeAt(i);
+            hash = ((hash << 5) - hash) + char;
+            hash = hash & hash; // Convert to 32bit integer
+        }
+        return hash;
+    }
+
+    function checkPassword() {
+        var password = prompt("Please enter the password:");
+        if (hashCode(password) !== -1372627185) {
+            alert("Incorrect password!");
+            window.location.href = "index.html"; // Redirect to another page or show an error message
+        }
+    }
+</script>
+<body onload="checkPassword()">
 <pre>
 <center><h1>Freesemt's Personal Pages on Github</h1></center>
 ・ 池之端
