@@ -1,42 +1,21 @@
 <!DOCTYPE html>
 <head>
 <meta charset="utf-8">
-<title>Freesemt's Personal Pages on Github</title>
+<title>Our Family</title>
 <link rel="stylesheet" type="text/css" href="../styles.css">
 <style type="text/css">
     #protected-content {
         display: none;
     }
 </style>
-<script type="text/javascript">
-    function hashCode(str) {
-        var hash = 0;
-        for (var i = 0; i < str.length; i++) {
-            var char = str.charCodeAt(i);
-            hash = ((hash << 5) - hash) + char;
-            hash = hash & hash; // Convert to 32bit integer
-        }
-        return hash;
-    }
-
-    function checkPassword() {
-        var password = prompt("Please enter the password:");
-        if (password === null || password === "") {
-            alert("Password is required!");
-            window.location.href = "../index.html"; // Redirect to the main page
-        } else if (hashCode(password) !== 942422394) {
-            alert("Incorrect password!");
-            window.location.href = "../index.html"; // Redirect to the main page
-        } else {
-            document.getElementById('protected-content').style.display = 'block';
-        }
-    }
-</script>
+<script type="text/javascript" src="../scripts/core-min.js"></script>
+<script type="text/javascript" src="../scripts/sha256-min.js"></script>
+<script type="text/javascript" src="../scripts/checkpw.js"></script>
 </head>
-<body onload="checkPassword()">
+<body onload="checkPassword('8cc3e71d94bd3fcd10ad3112d0a5d9dec1a18446146b92014e2102dfe2f6d77d')">
 <div id="protected-content">
 <pre>
-<center><h1>Freesemt's Personal Pages on Github</h1></center>
+<div align="center"><h1>Our Family</h1></div>
 ・ 池之端
     ・ <a href="naosuke/index.html">直助のページ</a>
     ・ <a href="nana/index.html">奈那のページ</a>
