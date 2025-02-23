@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<head>
+<meta charset="utf-8">
+<title>curriculum</title>
+<link rel="stylesheet" type="text/css" href="../../styles.css">
+<script type="text/javascript">
+  /* https://kkawazoe.github.io/blog/2020/05/23/insert-formula-into-hugo-part2/ */
+  MathJax = {
+    tex: {
+      inlineMath: [['$','$'], ['\\(','\\)']],
+      processEscapes: true,
+      tags: "ams",
+      autoload: {
+        color: [],
+        colorV2: ['color']
+      },
+      packages: {'[+]': ['noerrors']}
+    },
+    chtml: {
+      matchFontHeight: false,
+      displayAlign: "left", // version 2 で css で変更していた 数式の表示位置の設定
+      displayIndent: "2em"
+    },
+    options: {
+      skipHtmlTags: ['script', 'noscript', 'style', 'textarea'],
+      renderActions: {
+        /* これを記述しないと インライン数式(例. ${}_n \mathrm{ P }_k$) が機能しない */
+        find_script_mathtex: [10, function (doc) {
+          for (const node of document.querySelectorAll('script[type^="math/tex"]')) {
+            const display = !!node.type.match(/; *mode=display/);
+            const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+            const text = document.createTextNode('');
+            node.parentNode.replaceChild(text, node);
+            math.start = {node: text, delim: '', n: 0};
+            math.end = {node: text, delim: '', n: 0};
+            doc.math.push(math);
+          }
+        }, '']
+      }
+    },
+    loader: {
+      load: ['[tex]/noerrors']
+    }
+  };
+</script>
+<script type="text/javascript" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js" id="MathJax-script"></script>
+</head>
+<style type="text/css">
+img.middle { vertical-align: middle; }
+</style>
+<body>
+<pre>
+
+■ 文部科学省
+  ・ <a href="https://www.mext.go.jp/a_menu/shotou/new-cs/youryou/chu/su.htm">学習指導要領「生きる力」 数学</a>
+  ・ <a href="https://www.mext.go.jp/a_menu/shotou/new-cs/youryou/chu/sya.htm">学習指導要領「生きる力」 社会</a>
+  ・ <a href="https://www.mext.go.jp/a_menu/shotou/new-cs/youryou/chu/ri.htm">学習指導要領「生きる力」 理科</a>
+
+
+■ 都立白鷗高等学校・附属中学校
+  ・ <a href="https://www.metro.ed.jp/hakuo-h/assets/03_%E4%BB%A4%E5%92%8C%EF%BC%96%E5%B9%B4%E5%BA%A6%E7%94%A8_%E5%AD%A6%E7%BF%92%E8%A8%88%E7%94%BB%E8%A1%A8%EF%BC%88%E6%95%B0%E5%AD%A6%E7%A7%91%EF%BC%89_1.pdf">６年間を見通した教科の指導計画 数学科</a>
+  ・ <a href="https://www.metro.ed.jp/hakuo-h/assets/04_%E4%BB%A4%E5%92%8C%EF%BC%96%E5%B9%B4%E5%BA%A6%E7%94%A8_%E5%AD%A6%E7%BF%92%E8%A8%88%E7%94%BB%E8%A1%A8%EF%BC%88%E7%90%86%E7%A7%91%EF%BC%89.pdf">６年間を見通した教科の指導計画 理科</a>
+
+
+■ じじ
+<div align="center">
+<table border="1" style="border-collapse: collapse" cellpadding="3">
+  <tr><th>学年</th><th>数学科</th><th>ユークリッド原論</th><th>理科</th><th>Programming</th><th>Memo</th><th>References</th></tr>
+  <tr>
+    <td align="center">1</td>
+    <td>
+      ［代数］正の数と負の数（四則根号算、仮平均）
+      式の計算（文字式、多項式の計算）
+      方程式・不等式（１次方程式、連立方程式、１次不等式）
+      １次関数（比例、反比例、１次関数）
+      データの活用（ヒストグラム、代表値、箱ひげ図）
+      ［幾何］平面図形・空間図形
+      （作図、いろいろな立体、立体の切断）      
+    </td>
+    <td>
+第０巻
+第１巻
+    </td>
+    <td>
+    </td>
+    <td>
+    </td>
+    <td>
+ゼロの発見
+平面座標
+つるかめ算
+    </td>
+    <td>
+・ 負の数
+  ・ <a href="https://web.ma.utexas.edu/users/mks/326K/Negnos.html">History of Negative Numbers</a>
+  ・ <a href="http://aleph0.clarku.edu/%7Edjoyce/mathhist/china.html">Mathematics in China</a>
+  ・ <a href="https://ja.wikipedia.org/wiki/%E4%B9%9D%E7%AB%A0%E7%AE%97%E8%A1%93">九章算術 - Wikipedia</a>
+  ・ <a href="https://ja.wikipedia.org/wiki/%E4%B8%AD%E5%9B%BD%E3%81%AE%E6%95%B0%E5%AD%A6">中国の数学 - Wikipedia</a>
+    </td>
+  </tr>
+  <tr>
+    <td align="center">2</td>
+    <td>
+      ［代数］式の計算（展開・因数分解）
+      平方根（根号を含む式の計算、有理数と無理数）
+      ２次方程式（２次方程式の解き方、その応用）
+      確率と標本調査（場合の数、確率の計算、標本調査）
+      ［幾何］図形の性質と合同（平行線と角、多角形の内角外角）
+      三角形の合同、三角形と四角形（二等辺三角形、平行四辺形）
+      図形と相似（三角形の相似、相似な図形の面積比・体積比）
+      線分の比と計量（線分の比と面積比）、円（円周角の定理）
+    </td>
+    <td>
+第１巻
+第２巻
+    </td>
+    <td>
+    </td>
+    <td>
+SymPy
+    </td>
+    <td>
+    </td>
+    <td></td>
+  </tr>
+  <tr>
+    <td align="center">3</td>
+    <td>
+      ［代数］数と式（多項式の展開・因数分解の復習）
+      関数 （ y=ax^2 のグラフと応用、最大・最小）
+      方程式・不等式（２次方程式・不等式の解き方）
+      ［数学Ⅰ］数と式（多項式の展開、因数分解、実数）
+      ２次関数（２次関数の最大・最小、２次方程式・不等式）
+      図形と計量（三角比）
+      ［幾何］円（方べきの定理、２つの円
+      三平方の定理（平面図形、空間図形）
+    </td>
+    <td>
+第１巻
+第２巻
+第３巻
+    </td>
+    <td>
+    </td>
+    <td>
+    </td>
+    <td>
+    </td>
+    <td></td>
+  </tr>
+  <tr>
+    <td align="center">4</td>
+    <td>
+      ［数学Ⅰ］数と式（集合と命題）
+      図形と計量（三角比の拡張、正弦定理・余弦定理）
+      データの分析（分散・標準偏差、相関係数、仮説検定）
+      ［数学A］場合の数・確率（順列・組合せ、反復試行、条件
+      付き確率・期待値）
+      図形の性質（三角形の五心、円の性質、作図、空間図形）
+      数学と人間の活動
+      （倍数・約数、不定方程式、n進法、整数問題）
+      ［数学Ⅱ］式と証明（二項定理、相加・相乗の関係）
+      複素数と方程式（解と係数の関係、剰余の定理・因数定理）
+      図形と方程式（点と直線、円の方程式、軌跡と領域）
+      三角関数
+    </td>
+    <td>
+
+    </td>
+    <td>
+    </td>
+    <td>
+    </td>
+    <td>
+素数
+最小公倍数と最大公約数
+ベイズの定理
+    </td>
+    <td></td>
+  </tr>
+  <tr>
+    <td align="center">5</td>
+    <td>
+      ［数学Ⅱ］いろいろな関数（指数関数と対数関数）
+      微分法と積分法（微分係数、導関数、不定積分、面積）
+      ［数学B］数列（数列とその和、漸化式、数学的帰納法）
+      統計的な推測（仮説検定、確率分布、期待値と分数、正規分
+      布）
+      ［数学C］ベクトル（平面ベクトル、空間ベクトル）
+      複素数平面（極形式、ド・モアブルの定理）
+      ［数学Ⅲ］（理系）
+      いろいろな関数（分数関数、無理関数、逆関数、合成関数）
+      極限（数列の極限、関数の極限）
+    </td>
+    <td>
+
+    </td>
+    <td>
+音階
+    </td>
+    <td>
+    </td>
+    <td>
+行列
+線形変換
+    </td>
+    <td></td>
+  </tr>
+  <tr>
+    <td align="center">6</td>
+    <td>
+      ［数学C］式と曲線（２次曲線、媒介変数表示と極座標）
+      ［数学Ⅲ］（理系）
+      微分法（三角関数・指数関数・対数関数の微分）
+      微分法の応用（導関数の応用、速度・加速度）
+      積分法（不定積分の基本性質、置換積分法、部分積分法）
+      積分法の応用（面積、体積、曲線の長さ）
+    </td>
+    <td>
+
+    </td>
+    <td>
+    </td>
+    <td>
+    </td>
+    <td>
+    </td>
+    <td></td>
+  </tr>
+</table>
+</div>
+■ Programming References
+  ・ <a href="https://freesemt.github.io/">Freesemt's Personal Pages</a>
+  ・ <a href="https://code.visualstudio.com/docs/introvideos/basics">Getting started with Visual Studio Code</a>
+
+</pre>
+</body>
+</html>
