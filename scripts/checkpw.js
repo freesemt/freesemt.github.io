@@ -19,6 +19,17 @@ function checkPassword(correctHash, showHash, redirectUrl, hashMemoryName) {
     window.showHash = showHash;
     window.redirectUrl = redirectUrl;
     window.hashMemoryName = hashMemoryName;
+
+    // Add this script to handle 'Enter' key press
+    const inputField = document.getElementById('password-input');
+    const submitButton = document.getElementById('submit-button');
+
+    inputField.addEventListener('keydown', function(event) {
+      if (event.key === 'Enter') {
+        event.preventDefault(); // Prevent the default form submission
+        submitButton.click(); // Trigger the button click
+      }
+    });
 }
 
 function submitPassword() {
